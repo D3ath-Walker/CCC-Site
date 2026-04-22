@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "https://ccc-site.onrender.com";
 
 const registrationForm = document.getElementById('registration-form');
 const registrationSection = document.getElementById('registration-section');
