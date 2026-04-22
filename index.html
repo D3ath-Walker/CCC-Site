@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technove CCC</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>technove</h1>
+      <p class="subtitle">Code Correction Championship (CCC)</p>
+    </section>
+
+    <section id="registration-section" class="card">
+      <h2>Participant Details</h2>
+      <form id="registration-form">
+        <label>
+          Name
+          <input type="text" id="name" required />
+        </label>
+        <label>
+          Registration No.
+          <input type="text" id="regno" required />
+        </label>
+        <label>
+          Semester
+          <input type="text" id="semester" required />
+        </label>
+        <label>
+          Course
+          <input type="text" id="course" required />
+        </label>
+        <button type="submit" class="primary">Submit</button>
+      </form>
+    </section>
+
+    <section id="exam-section" class="card hidden">
+      <h2>Exam Page</h2>
+      <p id="exam-message">Waiting for the CCC to start.</p>
+      <p id="round-info">Current Round: <span id="current-round">1</span></p>
+      <button id="show-question-btn" class="secondary" disabled>Show Question</button>
+      <div id="question-area" class="hidden">
+        <div class="question-box">
+          <h3>Fix the code below</h3>
+          <pre id="question-code"></pre>
+        </div>
+        <label class="answer-label">
+          Corrected code
+          <textarea id="answer" rows="10" placeholder="Write the corrected code here" required></textarea>
+        </label>
+        <div class="timer-row">
+          <span>Time left:</span>
+          <span id="timer">05:00</span>
+        </div>
+        <button id="submit-answer-btn" class="primary" disabled>Submit Answer</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
