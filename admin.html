@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCC Admin Panel</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>TECHNOVA CCC ADMIN PANEL</h1>
+
+<button onclick="startExam()">Start Exam</button>
+<button onclick="resetExam()">Reset Exam</button>
+
+<br><br>
+
+<input type="number" id="roundInput" placeholder="Enter Round">
+<button onclick="setRound()">Set Round</button>
+
+<h2>Submissions</h2>
+
+<button onclick="loadSubmissions()">Refresh Submissions</button>
+
+<div id="submissionsBox"></div>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

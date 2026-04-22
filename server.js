@@ -148,6 +148,16 @@ round: currentRound
 });
 
 });
+
+app.get("/submissions", async (req,res)=>{
+
+const submissions =
+await Submission.find();
+
+res.json(submissions);
+
+});
+
 // start server
 const PORT = process.env.PORT || 3000;
 
