@@ -11,6 +11,7 @@ const timerDisplay = document.getElementById('timer');
 const examMessage = document.getElementById('exam-message');
 const answerField = document.getElementById('answer');
 const roundDisplay = document.getElementById("current-round");
+const thankyouSection = document.getElementById("thankyou-section");
 
 setInterval(() => {
 
@@ -139,6 +140,9 @@ submitAnswerBtn.addEventListener("click", () =>
       if(data === "Submission saved")
       {
         submitAnswerBtn.disabled = true;
+
+        examSection.classList.add("hidden");
+       thankyouSection.classList.remove("hidden");
       }
   });
 });
