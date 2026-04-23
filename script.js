@@ -136,13 +136,16 @@ submitAnswerBtn.addEventListener("click", () =>
   .then(res => res.text())
   .then(data => 
   {
-      alert(data);   // shows message from server
       if(data === "Submission saved")
       {
         submitAnswerBtn.disabled = true;
 
         examSection.classList.add("hidden");
        thankyouSection.classList.remove("hidden");
+      }
+      else
+      {
+        alert(data);   // shows message from server
       }
   });
 });
