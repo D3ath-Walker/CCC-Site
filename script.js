@@ -108,7 +108,7 @@ document.addEventListener("visibilitychange", () => {
 
         alert(`Warning! Tab switching detected (${warningCount}/3)`);
 
-        if(warningCount >= 10){
+        if(warningCount >= 3){
             alert("You switched tabs too many times. Auto-submitting exam.");
 
             submitAnswerBtn.click();
