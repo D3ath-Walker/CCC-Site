@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You Animation</title>
+  <style>
+    body 
+    {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url("pyke.png");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      font-family: sans-serif;
+    }
+    .container {
+      position: relative;
+      text-align: center;
+    }
+
+    .thankyou-card{
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 25px;
+
+      padding: 50px;
+      text-align: center;
+
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+    .thanks-line
+    {
+      color: white;
+      font-size: 28px;
+      margin: 10px 0;
+      text-align:center;
+    }
+
+    .event-name
+    {
+      font-size: 50px;
+      font-weight: bold;
+      margin: 10px 0;
+
+      background: linear-gradient(90deg,#00cfff,#ff003c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .thank-you {
+      font-size: 100px;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 3px;
+      -webkit-text-stroke-color: transparent;
+      background: linear-gradient(90deg, #00cfff, #ff003c, #00cfff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 8px #00cfff) drop-shadow(0 0 16px #ff003c);
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      color: transparent;
+      -webkit-text-stroke: 2.5px #00cfff;
+      text-shadow:
+        0 0 8px #00cfff,
+        0 0 20px #00cfff,
+        0 0 6px #ff003c,
+        0 0 18px #ff003c;
+      animation: popIn 0.5s ease forwards;
+    }
+
+    /* individual delays */
+    .letter:nth-child(1)  { animation-delay: 0.1s; }
+    .letter:nth-child(2)  { animation-delay: 0.4s; }
+    .letter:nth-child(3)  { animation-delay: 0.7s; }
+    .letter:nth-child(4)  { animation-delay: 1.0s; }
+    .letter:nth-child(5)  { animation-delay: 1.3s; }
+    .letter:nth-child(6)  { animation-delay: 1.7s; }
+    .letter:nth-child(7)  { animation-delay: 2.0s; }
+    .letter:nth-child(8)  { animation-delay: 2.3s; }
+    .letter:nth-child(9)  { animation-delay: 2.6s; }
+
+    @keyframes popIn {
+      0%   { opacity: 0; transform: scale(0.4) translateY(40px); }
+      60%  { opacity: 1; transform: scale(1.15) translateY(-10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* neon flicker after all letters appear */
+    .letter {
+      animation: popIn 0.5s ease forwards, flicker 3s infinite;
+    }
+    .letter:nth-child(1)  { animation-delay: 0.1s,  2.9s; }
+    .letter:nth-child(2)  { animation-delay: 0.4s,  3.1s; }
+    .letter:nth-child(3)  { animation-delay: 0.7s,  3.3s; }
+    .letter:nth-child(4)  { animation-delay: 1.0s,  3.5s; }
+    .letter:nth-child(5)  { animation-delay: 1.3s,  3.7s; }
+    .letter:nth-child(6)  { animation-delay: 1.7s,  4.0s; }
+    .letter:nth-child(7)  { animation-delay: 2.0s,  4.2s; }
+    .letter:nth-child(8)  { animation-delay: 2.3s,  4.4s; }
+    .letter:nth-child(9)  { animation-delay: 2.6s,  4.6s; }
+
+    @keyframes flicker {
+      0%, 100% {
+        text-shadow:
+          0 0 8px #00cfff,
+          0 0 20px #00cfff,
+          0 0 6px #ff003c,
+          0 0 18px #ff003c;
+        -webkit-text-stroke-color: #00cfff;
+      }
+      50% {
+        text-shadow:
+          0 0 4px #ff003c,
+          0 0 14px #ff003c,
+          0 0 4px #00cfff,
+          0 0 10px #00cfff;
+        -webkit-text-stroke-color: #ff003c;
+      }
+    }
+
+    .underline {
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, #00cfff, #ff003c);
+      border-radius: 2px;
+      margin: 12px auto 0;
+      box-shadow: 0 0 10px #00cfff, 0 0 20px #ff003c;
+      animation: growLine 0.6s ease forwards 3.0s;
+    }
+
+    @keyframes growLine {
+      to { width: 500px; }
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0;
+      animation: burst 1.4s ease-out forwards;
+    }
+
+    @keyframes burst {
+      0%   { opacity: 0; transform: translate(0,0) scale(0); }
+      30%  { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.3); }
+      100% { opacity: 0; transform: translate(var(--tx2), var(--ty2)) scale(0.2); }
+    }
+
+    /* Stars */
+    .star {
+      position: absolute;
+      font-size: 22px;
+      opacity: 0;
+      animation: spinOut 1.6s ease-out forwards;
+    }
+
+    @keyframes spinOut {
+      0%   { opacity: 0; transform: rotate(0deg) scale(0); }
+      30%  { opacity: 1; transform: rotate(60deg) scale(1.3); }
+      100% { opacity: 0; transform: rotate(200deg) scale(0.2); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="thankyou-card">
+<div class="container">
+
+  <div class="thank-you">
+    <span class="letter">T</span>
+    <span class="letter">h</span>
+    <span class="letter">a</span>
+    <span class="letter">n</span>
+    <span class="letter">k</span>
+    <span class="letter">&nbsp;</span>
+    <span class="letter">Y</span>
+    <span class="letter">o</span>
+    <span class="letter">u</span>
+  </div>
+
+  <div class="underline"></div>
+
+  <!-- Confetti -->
+  <div class="confetti-piece" style="top:50%;left:50%;background:#00cfff;--tx:-120px;--ty:-90px;--tx2:-200px;--ty2:-150px;animation-delay:2.8s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#ff003c;--tx:130px;--ty:-80px;--tx2:210px;--ty2:-130px;animation-delay:2.9s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#00cfff;--tx:-70px;--ty:-130px;--tx2:-110px;--ty2:-200px;animation-delay:2.85s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#ff003c;--tx:80px;--ty:-120px;--tx2:130px;--ty2:-190px;animation-delay:3.0s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#00cfff;--tx:-150px;--ty:-50px;--tx2:-230px;--ty2:-80px;animation-delay:2.95s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#ff003c;--tx:160px;--ty:-40px;--tx2:240px;--ty2:-65px;animation-delay:3.05s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#00cfff;--tx:50px;--ty:80px;--tx2:80px;--ty2:130px;animation-delay:2.9s;"></div>
+  <div class="confetti-piece" style="top:50%;left:50%;background:#ff003c;--tx:-80px;--ty:70px;--tx2:-130px;--ty2:120px;animation-delay:2.85s;"></div>
+
+  <!-- Stars -->
+  <div class="star" style="top:25%;left:15%;animation-delay:2.8s;color:#00cfff;filter:drop-shadow(0 0 6px #00cfff);">★</div>
+  <div class="star" style="top:20%;left:75%;animation-delay:3.0s;color:#ff003c;filter:drop-shadow(0 0 6px #ff003c);">★</div>
+  <div class="star" style="top:65%;left:82%;animation-delay:3.1s;color:#00cfff;font-size:16px;filter:drop-shadow(0 0 6px #00cfff);">★</div>
+  <div class="star" style="top:65%;left:8%;animation-delay:2.9s;color:#ff003c;font-size:14px;filter:drop-shadow(0 0 6px #ff003c);">★</div>
+
+  <p class="thanks-line">Thank you for participating in</p>
+  <h2 class="event-name">TECHNOVA - CCC</h2>
+  <p class="thanks-line">Your response has been recorded successfully.</p>
+</div>
+</div>
+
+</body>
+</html>

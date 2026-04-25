@@ -15,8 +15,10 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Inter, system-ui, sans-serif;
+
   background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 35%),
-    linear-gradient(180deg, #020617 0%, #0b1120 100%);
+  linear-gradient(180deg, #020617 0%, #0b1120 100%);
+
   color: var(--text);
 }
 
@@ -44,12 +46,17 @@ body {
 }
 
 .card {
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: 24px;
   padding: 26px;
-  box-shadow: 0 22px 75px rgba(15, 23, 42, 0.35);
+
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
 }
+
 
 .hidden {
   display: none;
@@ -131,8 +138,3 @@ pre {
   font-weight: 600;
 }
 
-@media (max-width: 620px) {
-  .container {
-    padding: 20px 16px 40px;
-  }
-}

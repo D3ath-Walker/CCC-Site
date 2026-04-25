@@ -23,6 +23,17 @@ fetch(`${SERVER_URL}/set-round/${round}`)
 
 }
 
+function setDifficulty(){
+
+const level =
+document.getElementById("difficultyInput").value;
+
+fetch(`${SERVER_URL}/set-difficulty/${level}`)
+.then(res => res.text())
+.then(data => alert(data));
+
+}
+
 function loadSubmissions(){
 
 fetch(`${SERVER_URL}/submissions`)

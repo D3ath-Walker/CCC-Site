@@ -13,6 +13,8 @@ const answerField = document.getElementById('answer');
 const roundDisplay = document.getElementById("current-round");
 const thankyouSection = document.getElementById("thankyou-section");
 
+let examSubmitted = false;
+
 setInterval(() => {
 
 fetch(`${SERVER_URL}/exam-status`)
@@ -90,6 +92,43 @@ function startTimer() {
   }, 1000);
 }
 
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Disable copy/paste
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("paste", e => e.preventDefault());
+
+// Detect tab switching
+let warningCount = 0;
+
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden && !examSubmitted){
+        warningCount++;
+
+        alert(`Warning! Tab switching detected (${warningCount}/3)`);
+
+        if(warningCount >= 10){
+            alert("You switched tabs too many times. Auto-submitting exam.");
+
+            submitAnswerBtn.click();
+        }
+    }
+});
+
+// Disable inspect shortcuts
+document.addEventListener("keydown", function(e){
+    if(
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && e.key === "I") ||
+        (e.ctrlKey && e.key === "u")
+    ){
+        e.preventDefault();
+    }
+});
+
+document.documentElement.requestFullscreen();
+
 registrationForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -135,19 +174,18 @@ submitAnswerBtn.addEventListener("click", () =>
   })
   .then(res => res.text())
   .then(data => 
-  {
-      if(data === "Submission saved")
-      {
+{
+    if(data === "Submission saved")
+    {
         submitAnswerBtn.disabled = true;
-
-        examSection.classList.add("hidden");
-       thankyouSection.classList.remove("hidden");
-      }
-      else
-      {
-        alert(data);   // shows message from server
-      }
-  });
+        examSubmitted = true;
+        window.location.href = "thank.html";
+    }
+    else
+    {
+        alert(data);
+    }
+});
 });
 
 // Developer control: manually activate the question button by calling enableExam() in browser console.

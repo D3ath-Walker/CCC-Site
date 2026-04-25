@@ -1,4 +1,5 @@
-const questions = [
+const questions = {
+  easy: [
 
 `#include<stdio.h>
 
@@ -18,7 +19,11 @@ int main()
     {
         printf("%d", i);
     }
-}`,
+}`
+
+],
+
+  medium: [
 
 `#include<stdio.h>
 
@@ -26,7 +31,11 @@ int main()
 {
     int a = 5;
     printf("%d" a);
-}`,
+}`
+
+],
+
+  hard: [
 
 `#include<stdio.h>
 
@@ -39,6 +48,8 @@ int main()
     }
 }`
 
-];
+]
+
+};
 
 module.exports = questions;

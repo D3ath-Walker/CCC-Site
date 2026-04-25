@@ -44,7 +44,10 @@ app.use(express.json());
 let examStarted = false;
 
 // current round
-let currentRound = 1;
+let currentRound = 1; 
+
+// current difficulty
+let currentDifficulty = "easy";
 
 // check exam status
 app.get("/exam-status", (req,res)=>{
@@ -55,6 +58,11 @@ examStarted: examStarted
 
 });
 
+app.get("/set-difficulty/:level",(req,res)=>
+{
+  currentDifficulty = req.params.level;
+  res.send("Difficulty set to " + currentDifficulty);
+});
 
 // start exam (admin)
 app.get("/start-exam",(req,res)=>{
@@ -79,17 +87,18 @@ res.send("Exam reset");
 app.get("/question",(req,res)=>{
 
 if(!examStarted){
-
 return res.status(403).json({
 message:"Exam not started yet"
 });
-
 }
 
+const roundQuestions = questions[currentDifficulty];
+
 const randomIndex =
-Math.floor(Math.random()*questions.length);
+Math.floor(Math.random() * roundQuestions.length);
+
 res.json({
-question: questions[randomIndex]
+question: roundQuestions[randomIndex]
 });
 
 });

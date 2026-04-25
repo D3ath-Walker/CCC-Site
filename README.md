@@ -22,3 +22,4 @@ In the browser console, run:
 ```js
 window.enableExam();
 ```
+"https://ccc-site.onrender.com"
